@@ -1,45 +1,11 @@
-swarm_simulator
+swarm_simulator 
 ================
 
-This is the simulator for the Swarm Robotics project at IIT Kharagpur.
-The simulator is based on Gazebo, interfaced using ROS (Robot Operating System).
+This is a modified version of [a Swarm Robotics project at IIT Kharagpur](https://github.com/nevinvalsaraj/swarm-gazebo-simulator).
+The simulator is based on Gazebo, interfaced using ROS Indigo.
+
+Modified to work with [SwarmbotGazebo-DQN](https://github.com/RobbieHolland/SwarmbotGazebo-DQN).
 
 Prerequisites :
 - Install Gazebo with ROS. Follow [Gazebo Install](http://gazebosim.org/tutorials?tut=ros_installing&cat=connect_ros).
-
-To get started :
-
-- Clone the repo as :
-```
-$ git clone https://github.com/Swarm-IITKgp/swarm_simulator.git swarm_simulator
-```
-
-- Make sure $GAZEBO_MODEL_PATH is set in ~/.bashrc or set it to the location it is. If not, then add the following line to .bashrc:
-```
-export GAZEBO_MODEL_PATH=<path to gazebo models folder>
-```
-
-- Alternatively, you can copy the models folder to the gazebo hidden directory in the home folder, i.e: ```~/.gazebo/models``` 
-
-- Add the following lines to your ~/.bashrc file at the end:
-```
-source <path to catkin_ws>/devel/setup.bash
-```
-
-- Close the current window and open a new terminal.
-
-- To generate the launch file :
-```sh
- $ roscd swarm_simulator
- $ bash scripts/generator.sh [number of agents]
-```
-
-- To launch the simulator :
-```sh
- $ roslaunch swarm_simulator swarm.launch
-```
-
-- To check the published obstacle list : <br/>
-```sh
- $ rostopic echo /obstacleList
-```
+- Must be used as a ROS package in a Catkin workspace.
