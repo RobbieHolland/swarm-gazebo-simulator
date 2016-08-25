@@ -1,0 +1,7 @@
+
+if 0 == math.nan() then
+
+	print('lol')
+else
+	print('lel')
+end
