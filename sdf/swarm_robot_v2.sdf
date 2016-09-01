@@ -8,7 +8,8 @@
 
 		<link name='chassis'>
       <pose>0 0 .1 0 0 0</pose>
-			<inertial><mass>200</mass></inertial>
+			<!-- mass of 30 works better for movement but they keep flipping -->
+			<inertial><mass>30</mass></inertial>
 
       <collision name='collision'>
         <geometry>
@@ -45,7 +46,7 @@
     <clip>
       <near>0.1</near>
       <!-- Sensor range -->
-      <far>5</far>
+      <far>4</far>
     </clip>
   </camera>
  <pose> .15 0 .05 0 0 0.785</pose>
@@ -77,7 +78,7 @@
     <clip>
       <near>0.1</near>
       <!-- Sensor range -->
-      <far>5</far>
+      <far>4</far>
     </clip>
   </camera>
  <pose> .15 0 .05 0 0 -0.785</pose>
@@ -138,9 +139,10 @@
  		</link>
 
 <!-- Left wheel -->
-
+<!-- Mass best at 2.7 -->
 		<link name="left_wheel">
 		  <pose>0.05 0.13 0.1 0 1.5707 1.5707</pose>
+			<inertial><mass>2.7</mass></inertial>
 		  <collision name="collision">
 		    <geometry>
 		      <cylinder>
@@ -169,6 +171,7 @@
 
 		<link name="right_wheel">
 		  <pose>0.05 -0.13 0.1 0 1.5707 1.5707</pose>
+			<inertial><mass>30</mass></inertial>
 		  <collision name="collision">
 		    <geometry>
 		      <cylinder>
@@ -217,11 +220,8 @@
 
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>10</updateRate>
       <leftJoint>left_wheel_hinge</leftJoint>
       <rightJoint>right_wheel_hinge</rightJoint>
-      <wheelSeparation>0.3</wheelSeparation>
-      <wheelDiameter>0.2</wheelDiameter>
       <torque>20</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>

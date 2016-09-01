@@ -31,4 +31,4 @@ To get ray sensors to output:
 http://wiki.ros.org/hector_gazebo_plugins#GazeboRosSonar
 
 To view camera topic:
-rosrun image_view image_view image:=/swarmbot0/camera/image_raw
+rosrun image_view image_view image:=/swarmbot0/front_colour_sensor_1/image_raw
