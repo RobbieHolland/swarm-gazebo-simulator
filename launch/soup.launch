@@ -1,6 +1,6 @@
 <launch>
  <include file="$(find gazebo_ros)/launch/empty_world.launch">     
-    <arg name="world_name" value="$(find swarm_simulator)/world/soup.world"/>  
+    <arg name="world_name" value="$(find swarm_simulator)/world/soup_plus.world"/>  
 		<arg name="gui" value="$(arg gui)"/>     
   </include>  
  
