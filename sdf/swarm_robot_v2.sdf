@@ -31,6 +31,19 @@
         </material>
       </visual>
 
+			<!-- Contact sensor -->
+			<sensor name="contact_sensor" type="contact">
+				<contact>
+					<collision>collision</collision>
+					<topic>collision_indicator</topic>
+				</contact>
+
+				<plugin name="${name}_gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
+					<alwaysOn>true</alwaysOn>
+					<bumperTopicName>collision_indicator</bumperTopicName>
+					<frameName>world</frameName>
+				</plugin>
+			</sensor>
 
 <!-- Sensors -->
 		<!-- 15x1 cameras act as 15 colour sensors -->
@@ -129,6 +142,7 @@
   </plugin>
 </sensor>
 
+
 <!-- Caster -->
 
       <collision name='caster_collision'>
@@ -165,7 +179,7 @@
 					<emissive>0 0 1 1</emissive>
         </material>
       </visual>
- 		</link>
+</link>
 
 <!-- Left wheel -->
 
