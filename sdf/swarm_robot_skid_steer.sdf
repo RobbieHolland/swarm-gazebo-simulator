@@ -1,0 +1,341 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="my_robot">
+		<!-- Ignored by physics for building purposes-->
+		<static>false</static>
+
+<!-- Chassis -->
+
+		<link name='chassis'>
+      <pose>0 0 .1 0 0 0</pose>
+			<inertial><mass>200</mass></inertial>
+
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>.44 .2 .1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <geometry>
+          <box>
+            <size>.44 .2 .1</size>
+          </box>
+        </geometry>
+				<material>
+					<ambient>0 0 1 1</ambient>
+					<diffuse>0 0 1 1</diffuse>
+					<specular>0 0 1 1</specular>
+					<emissive>0 0 1 1</emissive>
+        </material>
+      </visual>
+
+
+<!-- Sensors -->
+		<!-- 15x1 cameras act as 15 colour sensors -->
+
+<sensor name="colour_sensor_1" type="camera">
+  <camera>
+    <horizontal_fov>1.5707</horizontal_fov>
+    <image>
+      <width>30</width>
+      <height>1</height>
+    </image>
+    <clip>
+      <near>0.001</near>
+      <!-- Sensor range -->
+      <far>5</far>
+    </clip>
+  </camera>
+ <pose> .15 0 .05 0 0 0.785</pose>
+  <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+    <alwaysOn>true</alwaysOn>
+    <cameraName>front_colour_sensor_1</cameraName>
+    <imageTopicName>image_raw</imageTopicName>
+    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+    <frameName>camera_link</frameName>
+    <hackBaseline>0.07</hackBaseline>
+    <distortionK1>0.0</distortionK1>
+    <distortionK2>0.0</distortionK2>
+    <distortionK3>0.0</distortionK3>
+    <distortionT1>0.0</distortionT1>
+    <distortionT2>0.0</distortionT2>
+  </plugin>
+  <always_on>1</always_on>
+ <visualize>false</visualize>
+</sensor>
+
+<sensor name="colour_sensor_2" type="camera">
+  <camera>
+    <horizontal_fov>1.5707</horizontal_fov>
+    <image>
+      <width>30</width>
+      <height>1</height>
+    </image>
+    <clip>
+      <near>0.001</near>
+      <!-- Sensor range -->
+      <far>5</far>
+    </clip>
+  </camera>
+ 	<pose> .15 0 .05 0 0 -0.785</pose>
+  <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+    <alwaysOn>true</alwaysOn>
+    <cameraName>front_colour_sensor_2</cameraName>
+    <imageTopicName>image_raw</imageTopicName>
+    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+    <frameName>camera_link</frameName>
+    <hackBaseline>0.07</hackBaseline>
+    <distortionK1>0.0</distortionK1>
+    <distortionK2>0.0</distortionK2>
+    <distortionK3>0.0</distortionK3>
+    <distortionT1>0.0</distortionT1>
+    <distortionT2>0.0</distortionT2>
+  </plugin>
+  <always_on>1</always_on>
+ <visualize>false</visualize>
+</sensor>
+
+<!-- Range sensors -->
+
+<sensor name="laserscanner" type="ray">
+  <visualize>false</visualize>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>60</samples>
+        <min_angle>-1.5707</min_angle>
+        <max_angle>1.5707</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>1</samples>
+				<!-- Since 60 square pixels cover pi/2, and camera is 60x1, pixel height is (pi/2)/60 so min/max angle = +- pi/(2*60*2)-->
+        <min_angle>-0.01308996939</min_angle>
+        <max_angle>0.01308996939</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.001</min>
+      <max>4</max>
+      <resolution>30</resolution>
+    </range>
+  </ray>
+ 	<pose> .15 0 .05 0 0 0</pose>
+  <plugin name="gazebo_ros_base_scan_link_controller" filename="libgazebo_ros_laser.so">
+    <gaussianNoise>0.005</gaussianNoise>
+    <alwaysOn>true</alwaysOn>
+    <topicName>scan_sensor</topicName>
+  </plugin>
+</sensor>
+ 		</link>
+
+<!-- Left Front wheel -->
+
+		<link name="left_front_wheel">
+		  <pose>0.12 0.13 0.1 0 1.5707 1.5707</pose>
+		  <inertial><mass>30</mass></inertial>
+		  <collision name="collision">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.5</mu>
+              <mu2>0.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+		  </collision>
+		  <visual name="visual">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+				<material>
+					<ambient>0 0 1 1</ambient>
+					<diffuse>0 0 1 1</diffuse>
+					<specular>0 0 1 1</specular>
+					<emissive>0 0 1 1</emissive>
+        </material>
+		  </visual>
+		</link>
+
+<!-- Right Front wheel -->
+
+		<link name="right_front_wheel">
+		  <pose>0.12 -0.13 0.1 0 1.5707 1.5707</pose>
+		  <inertial><mass>30</mass></inertial>
+		  <collision name="collision">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.5</mu>
+              <mu2>0.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+		  </collision>
+		  <visual name="visual">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+				<material>
+					<ambient>0 0 1 1</ambient>
+					<diffuse>0 0 1 1</diffuse>
+					<specular>0 0 1 1</specular>
+					<emissive>0 0 1 1</emissive>
+        </material>
+		  </visual>
+		</link>
+
+<!-- Left Back wheel -->
+
+		<link name="left_back_wheel">
+		  <pose>-0.12 0.13 0.1 0 1.5707 1.5707</pose>
+		  <inertial><mass>30</mass></inertial>
+		  <collision name="collision">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.5</mu>
+              <mu2>0.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+		  </collision>
+		  <visual name="visual">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+				<material>
+					<ambient>0 0 1 1</ambient>
+					<diffuse>0 0 1 1</diffuse>
+					<specular>0 0 1 1</specular>
+					<emissive>0 0 1 1</emissive>
+        </material>
+		  </visual>
+		</link>
+
+<!-- Right Back wheel -->
+
+		<link name="right_back_wheel">
+		  <pose>-0.12 -0.13 0.1 0 1.5707 1.5707</pose>
+		  <inertial><mass>30</mass></inertial>
+		  <collision name="collision">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.5</mu>
+              <mu2>0.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+		  </collision>
+		  <visual name="visual">
+		    <geometry>
+		      <cylinder>
+		        <radius>.1</radius>
+		        <length>.05</length>
+		      </cylinder>
+		    </geometry>
+				<material>
+					<ambient>0 0 1 1</ambient>
+					<diffuse>0 0 1 1</diffuse>
+					<specular>0 0 1 1</specular>
+					<emissive>0 0 1 1</emissive>
+        </material>
+		  </visual>
+		</link>
+
+<!-- Wheel joints -->
+
+    <joint type="revolute" name="left_front">
+      <pose>0 0 -0.03 0 0 0</pose>
+      <child>left_front_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="revolute" name="right_front">
+      <pose>0 0 0.03 0 0 0</pose>
+      <child>right_front_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="revolute" name="left_rear">
+      <pose>0 0 -0.03 0 0 0</pose>
+      <child>left_back_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="revolute" name="right_rear">
+      <pose>0 0 0.03 0 0 0</pose>
+      <child>right_back_wheel</child>
+      <parent>chassis</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+<!-- Plugins -->
+
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>99999</updateRate>
+    <leftFrontJoint>left_front</leftFrontJoint>
+    <rightFrontJoint>right_front</rightFrontJoint>
+    <leftRearJoint>left_rear</leftRearJoint>
+    <rightRearJoint>right_rear</rightRearJoint>
+    <wheelSeparation>0.25</wheelSeparation>
+    <wheelDiameter>0.2</wheelDiameter>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+    <torque>20</torque>
+    <commandTopic>cmd_vel</commandTopic>
+  </plugin>
+
+
+
+  </model>
+</sdf>
