@@ -34,7 +34,7 @@
 		  <collision name="collision_mouth_part">
 		    <geometry>
           <box>
-            <size>0.01 0.2 0.112</size>
+            <size>0.01 0.3 0.112</size>
           </box>
 		    </geometry>
 				<pose> 0.156 0 -0.01 0 0 0</pose>
