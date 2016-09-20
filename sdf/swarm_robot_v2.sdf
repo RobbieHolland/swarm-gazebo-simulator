@@ -31,10 +31,34 @@
         </material>
       </visual>
 
+		  <collision name="collision_mouth_part">
+		    <geometry>
+          <box>
+            <size>0.01 0.2 0.112</size>
+          </box>
+		    </geometry>
+				<pose> 0.156 0 -0.01 0 0 0</pose>
+		  </collision>
+
+		  <visual name="visual_mouth_part">
+		    <geometry>
+          <box>
+            <size>0.01 0.3 0.112</size>
+          </box>
+		    </geometry>
+				<material>
+					<ambient>0 0 1 1</ambient>
+					<diffuse>0 0 1 1</diffuse>
+					<specular>0 0 1 1</specular>
+					<emissive>0 0 1 1</emissive>
+        </material>
+				<pose> 0.156 0 -0.01 0 0 0</pose>
+		  </visual>
+
 			<!-- Contact sensor -->
 			<sensor name="contact_sensor" type="contact">
 				<contact>
-					<collision>collision</collision>
+					<collision>collision_mouth_part</collision>
 					<topic>collision_indicator</topic>
 				</contact>
 
@@ -48,99 +72,99 @@
 <!-- Sensors -->
 		<!-- 15x1 cameras act as 15 colour sensors -->
 
-<sensor name="colour_sensor_1" type="camera">
-  <camera>
-    <horizontal_fov>1.5707</horizontal_fov>
-    <image>
-      <width>30</width>
-      <height>1</height>
-    </image>
-    <clip>
-      <near>0.001</near>
-      <!-- Sensor range -->
-      <far>5</far>
-    </clip>
-  </camera>
- <pose> .15 0 .05 0 0 0.785</pose>
-  <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-    <alwaysOn>true</alwaysOn>
-    <cameraName>front_colour_sensor_1</cameraName>
-    <imageTopicName>image_raw</imageTopicName>
-    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-    <frameName>camera_link</frameName>
-    <hackBaseline>0.07</hackBaseline>
-    <distortionK1>0.0</distortionK1>
-    <distortionK2>0.0</distortionK2>
-    <distortionK3>0.0</distortionK3>
-    <distortionT1>0.0</distortionT1>
-    <distortionT2>0.0</distortionT2>
-  </plugin>
-  <always_on>1</always_on>
- <visualize>false</visualize>
-</sensor>
+			<sensor name="colour_sensor_1" type="camera">
+				<camera>
+					<horizontal_fov>1.5707</horizontal_fov>
+					<image>
+						<width>30</width>
+						<height>1</height>
+					</image>
+					<clip>
+						<near>0.001</near>
+						<!-- Sensor range -->
+						<far>5</far>
+					</clip>
+				</camera>
+			 <pose> .15 0 .05 0 0 0.785</pose>
+				<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+					<alwaysOn>true</alwaysOn>
+					<cameraName>front_colour_sensor_1</cameraName>
+					<imageTopicName>image_raw</imageTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<frameName>camera_link</frameName>
+					<hackBaseline>0.07</hackBaseline>
+					<distortionK1>0.0</distortionK1>
+					<distortionK2>0.0</distortionK2>
+					<distortionK3>0.0</distortionK3>
+					<distortionT1>0.0</distortionT1>
+					<distortionT2>0.0</distortionT2>
+				</plugin>
+				<always_on>1</always_on>
+			 <visualize>false</visualize>
+			</sensor>
 
-<sensor name="colour_sensor_2" type="camera">
-  <camera>
-    <horizontal_fov>1.5707</horizontal_fov>
-    <image>
-      <width>30</width>
-      <height>1</height>
-    </image>
-    <clip>
-      <near>0.001</near>
-      <!-- Sensor range -->
-      <far>5</far>
-    </clip>
-  </camera>
- 	<pose> .15 0 .05 0 0 -0.785</pose>
-  <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-    <alwaysOn>true</alwaysOn>
-    <cameraName>front_colour_sensor_2</cameraName>
-    <imageTopicName>image_raw</imageTopicName>
-    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-    <frameName>camera_link</frameName>
-    <hackBaseline>0.07</hackBaseline>
-    <distortionK1>0.0</distortionK1>
-    <distortionK2>0.0</distortionK2>
-    <distortionK3>0.0</distortionK3>
-    <distortionT1>0.0</distortionT1>
-    <distortionT2>0.0</distortionT2>
-  </plugin>
-  <always_on>1</always_on>
- <visualize>false</visualize>
-</sensor>
+			<sensor name="colour_sensor_2" type="camera">
+				<camera>
+					<horizontal_fov>1.5707</horizontal_fov>
+					<image>
+						<width>30</width>
+						<height>1</height>
+					</image>
+					<clip>
+						<near>0.001</near>
+						<!-- Sensor range -->
+						<far>5</far>
+					</clip>
+				</camera>
+			 	<pose> .15 0 .05 0 0 -0.785</pose>
+				<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+					<alwaysOn>true</alwaysOn>
+					<cameraName>front_colour_sensor_2</cameraName>
+					<imageTopicName>image_raw</imageTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<frameName>camera_link</frameName>
+					<hackBaseline>0.07</hackBaseline>
+					<distortionK1>0.0</distortionK1>
+					<distortionK2>0.0</distortionK2>
+					<distortionK3>0.0</distortionK3>
+					<distortionT1>0.0</distortionT1>
+					<distortionT2>0.0</distortionT2>
+				</plugin>
+				<always_on>1</always_on>
+			 <visualize>false</visualize>
+			</sensor>
 
 <!-- Range sensors -->
 
-<sensor name="laserscanner" type="ray">
-  <visualize>false</visualize>
-  <ray>
-    <scan>
-      <horizontal>
-        <samples>60</samples>
-        <min_angle>-1.5707</min_angle>
-        <max_angle>1.5707</max_angle>
-      </horizontal>
-      <vertical>
-        <samples>1</samples>
-				<!-- Since 60 square pixels cover pi/2, and camera is 60x1, pixel height is (pi/2)/60 so min/max angle = +- pi/(2*60*2)-->
-        <min_angle>-0.01308996939</min_angle>
-        <max_angle>0.01308996939</max_angle>
-      </vertical>
-    </scan>
-    <range>
-      <min>0.001</min>
-      <max>4</max>
-      <resolution>30</resolution>
-    </range>
-  </ray>
- 	<pose> .15 0 .05 0 0 0</pose>
-  <plugin name="gazebo_ros_base_scan_link_controller" filename="libgazebo_ros_laser.so">
-    <gaussianNoise>0.005</gaussianNoise>
-    <alwaysOn>true</alwaysOn>
-    <topicName>scan_sensor</topicName>
-  </plugin>
-</sensor>
+			<sensor name="laserscanner" type="ray">
+				<visualize>false</visualize>
+				<ray>
+					<scan>
+						<horizontal>
+						  <samples>60</samples>
+						  <min_angle>-1.5707</min_angle>
+						  <max_angle>1.5707</max_angle>
+						</horizontal>
+						<vertical>
+						  <samples>1</samples>
+							<!-- Since 60 square pixels cover pi/2, and camera is 60x1, pixel height is (pi/2)/60 so min/max angle = +- pi/(2*60*2)-->
+						  <min_angle>-0.01308996939</min_angle>
+						  <max_angle>0.01308996939</max_angle>
+						</vertical>
+					</scan>
+					<range>
+						<min>0.001</min>
+						<max>4</max>
+						<resolution>30</resolution>
+					</range>
+				</ray>
+			 	<pose> .15 0 .05 0 0 0</pose>
+				<plugin name="gazebo_ros_base_scan_link_controller" filename="libgazebo_ros_laser.so">
+					<gaussianNoise>0.005</gaussianNoise>
+					<alwaysOn>true</alwaysOn>
+					<topicName>scan_sensor</topicName>
+				</plugin>
+			</sensor>
 
 
 <!-- Caster -->
@@ -179,7 +203,7 @@
 					<emissive>0 0 1 1</emissive>
         </material>
       </visual>
-</link>
+		</link>
 
 <!-- Left wheel -->
 
