@@ -1,6 +1,6 @@
 <launch>
  <include file="$(find gazebo_ros)/launch/empty_world.launch">     
-    <arg name="world_name" value="$(find swarm_simulator)/world/arena.world"/>      
+    <arg name="world_name" value="$(find swarm_simulator)/worlds/arena.world"/>      
   </include>  
  
     <node pkg="swarm_simulator" type="swarm_simulator_node" name="swarm_simulator_node" respawn="false" /> 
