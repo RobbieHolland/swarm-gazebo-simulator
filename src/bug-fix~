@@ -1,8 +1,0 @@
-Tried:
-1. rosservice call /gazebo/reset_world
-2. rosservice call /gazebo/reset_simulation
-
-To try:
-1. Don't publish robot commands (physics and/or diff_drive) - Seems to work
-2. Continually Check Gazebo Answers
-3. Update Gazebo and have it still work with Indigo

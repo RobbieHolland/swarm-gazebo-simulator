@@ -1,2 +1,0 @@
-local simulation = require "main"
-transmitter:_init()
